@@ -1,6 +1,6 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
-module.exports = async () => {
+export async function setupDatabase() {
     let BD_URL;
     if (process.env.NODE_ENV === "prod") {
         console.log('Conectando com o banco de dados de produção...');

@@ -1,9 +1,10 @@
-const cors = require('cors');
-const databaseConfig = require('./config/database');
-const bodyParser = require('body-parser');
-const express = require('express');
+import 'dotenv/config';
+import cors from 'cors';
+import { setupDatabase } from './config/database.js';
+import bodyParser from 'body-parser';
+import express from 'express';
+
 const server = express();
-require('dotenv/config');
 
 server.use(cors());
 
@@ -11,7 +12,7 @@ server.get('/', function (req, res) {
     return res.json({ message: "API conectada" });
 })
 
-databaseConfig();
+setupDatabase();
 
 server.use(express.json());
 server.use(bodyParser.urlencoded({ extended: false }));
@@ -21,4 +22,4 @@ const port = process.env.PORT;
 
 server.listen(port);
 
-module.exports = server;
+export default server;
