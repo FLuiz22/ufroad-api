@@ -3,6 +3,7 @@ import cors from 'cors';
 import { setupDatabase } from './config/database.js';
 import bodyParser from 'body-parser';
 import express from 'express';
+import UserRoutes from './modules/User/UserRoutes.js';
 
 const server = express();
 
@@ -15,6 +16,7 @@ server.get('/', function (req, res) {
 setupDatabase();
 
 server.use(express.json());
+server.use(UserRoutes);
 server.use(bodyParser.urlencoded({ extended: false }));
 server.use(bodyParser.json());
 
