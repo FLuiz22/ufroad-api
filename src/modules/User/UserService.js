@@ -1,6 +1,6 @@
 import User from './User.js';
-import { ErrorNotFound, ErrorAlreadyExists } from '../../util/Errors.js';
-import { hashPassword } from '../../util/password.js';
+import { ErrorNotFound, ErrorAlreadyExists } from '@util/errors.js';
+import { hashPassword } from '@util/password.js';
 
 export default {
     async create(data) {

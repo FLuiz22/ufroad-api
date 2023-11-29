@@ -18,6 +18,10 @@
     "url": "https://github.com/FLuiz22/ufroad-api/issues"
   },
   "homepage": "https://github.com/FLuiz22/ufroad-api#readme",
+  "_moduleAliases": {
+    "@": "src",
+    "@util": "src/util"
+  },
   "dependencies": {
     "bcrypt": "^5.1.1",
     "body-parser": "^1.20.2",
