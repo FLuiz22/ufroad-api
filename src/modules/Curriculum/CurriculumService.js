@@ -1,5 +1,5 @@
 import Curriculum from './Curriculum.js';
-import { ErrorNotFound } from '../../util/errors.js';
+import { ErrorNotFound } from '@util/errors.js';
 
 export default {
     async getAll() {
