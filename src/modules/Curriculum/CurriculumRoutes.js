@@ -2,6 +2,7 @@ import CurriculumController from "./CurriculumController.js";
 import { Router } from "express";
 const router = new Router();
 
+router.post("/curriculum", CurriculumController.create);
 router.get("/curriculum", CurriculumController.getAll);
 router.get("/curriculum/:id", CurriculumController.findById);
 

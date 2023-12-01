@@ -2,6 +2,23 @@ import Curriculum from './Curriculum.js';
 import { ErrorNotFound } from '@util/errors.js';
 
 export default {
+    async create(data) {
+        const { year, /* classes, courseId */ } = data;
+
+        if (!year) {
+            throw new Error("Ano inválido");
+        }
+
+
+        const cur = await Curriculum.create({
+            yearImplemented: parseInt(year),
+            // classes: ...,
+            // course: ...,
+        });
+        
+        return cur;
+    },
+
     async getAll() {
         let all = await Curriculum.find();
         return all;

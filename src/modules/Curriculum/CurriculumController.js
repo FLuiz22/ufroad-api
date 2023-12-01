@@ -1,6 +1,11 @@
 import CurriculumService from './CurriculumService.js';
 
 export default {
+    async create(req, res) {
+        const curriculum = await CurriculumService.create(req.body);
+        return res.status(200).send({ curriculum });
+    },
+
     async getAll(req, res) {
         const data = await CurriculumService.getAll();
         return res.status(200).send(data);
