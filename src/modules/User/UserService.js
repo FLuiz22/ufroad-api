@@ -8,7 +8,7 @@ export default {
 
         const user = await User.findOne({ email });
         if (user) {
-            throw new ErrorAlreadyExists('Usuário com email já existe');
+            throw new ErrorAlreadyExists('Usuário com email já existente');
         }
 
         const newUser = await User.create({
