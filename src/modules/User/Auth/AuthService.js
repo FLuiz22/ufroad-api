@@ -8,9 +8,9 @@ const signToken = user => {
         sub: user,
         iat: new Date().getTime()
     }, process.env.JWT_SECRET);
-};
+}
 
-module.exports = {
+export default {
     async signIn(data) {
         const { email, password } = data;
 
@@ -34,4 +34,4 @@ module.exports = {
             'user': user
         };
     }
-}
+};

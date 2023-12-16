@@ -1,6 +1,6 @@
 import AuthService from './AuthService.js';
 
-module.exports = {
+export default {
     async signIn(req, res) {
         try {
             const data = await AuthService.signIn(req.body);
