@@ -7,8 +7,8 @@ route.post("/signUp", CourseController.create);
 
 route.get("/course/:id", CourseController.findById);
 route.patch("/course/:id", CourseController.update);
-route.patch("/sclass/:id", CourseController.updateSClass);
-route.patch("/curriculum/:id", CourseController.updateCurriculum);
+route.patch("/course/sclass/:id", CourseController.updateSClass);
+route.patch("/course/curriculum/:id", CourseController.updateCurriculum);
 route.delete("/course/:id", CourseController.delete);
 
 export default route;
