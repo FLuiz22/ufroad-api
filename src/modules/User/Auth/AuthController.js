@@ -5,8 +5,8 @@ export default {
         try {
             const data = await AuthService.signIn(req.body);
 
-            if(data.hasOwnProperty('erro')) {
-                return res.status(401).send({ error: data.erro });
+            if(data.error) {
+                return res.status(401).send({ error: data.error });
             }
 
             return res.status(200).send({ data: data });

@@ -1,6 +1,7 @@
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import User from '../User.js';
+import { ErrorUnauthorized } from '@/util/errors.js';
 
 const signToken = user => {
     return jwt.sign({
@@ -17,21 +18,21 @@ export default {
         const user = await User.findOne({ email: email}).populate({path: 'course', select: 'name'});
 
         if(!user) {
-            return { erro: 'Usuário ou senha incorreta!'};
+            throw new ErrorUnauthorized('Usuário ou senha incorreta!');
         }
 
         const match = await bcrypt.compare(password, user.password);
 
         if(!match) {
-            return { erro: 'Usuário ou senha incorreta!' };
+            throw new ErrorUnauthorized('Usuário ou senha incorreta!');
         }
 
         delete user._doc.password;
 
-        const token = signToken(user);
+        signToken(user);
 
         return {
-            'user': user
+            user
         };
     }
 };
