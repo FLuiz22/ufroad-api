@@ -6,6 +6,7 @@ import express from 'express';
 import UserRoutes from './modules/User/UserRoutes.js';
 import CurriculumRoutes from './modules/Curriculum/CurriculumRoutes.js';
 import ClassRoutes from './modules/Class/ClassRoutes.js';
+import CourseRoutes from './modules/Course/CourseRoutes.js'
 
 const server = express();
 
@@ -18,7 +19,7 @@ server.get('/', function (req, res) {
 setupDatabase();
 
 server.use(express.json());
-server.use(UserRoutes, CurriculumRoutes, ClassRoutes);
+server.use(UserRoutes, CurriculumRoutes, ClassRoutes, CourseRoutes);
 server.use(bodyParser.urlencoded({ extended: false }));
 server.use(bodyParser.json());
 
