@@ -4,6 +4,8 @@ import { setupDatabase } from './config/database.js';
 import bodyParser from 'body-parser';
 import express from 'express';
 import UserRoutes from './modules/User/UserRoutes.js';
+import CurriculumRoutes from './modules/Curriculum/CurriculumRoutes.js';
+import ClassRoutes from './modules/Class/ClassRoutes.js';
 
 const server = express();
 
@@ -16,7 +18,7 @@ server.get('/', function (req, res) {
 setupDatabase();
 
 server.use(express.json());
-server.use(UserRoutes);
+server.use(UserRoutes, CurriculumRoutes, ClassRoutes);
 server.use(bodyParser.urlencoded({ extended: false }));
 server.use(bodyParser.json());
 
