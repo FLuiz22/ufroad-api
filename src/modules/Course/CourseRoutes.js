@@ -3,7 +3,7 @@ const route = new Router();
 
 import CourseController from "./CourseController.js";
 
-route.post("/signUp", CourseController.create);
+route.post("/course", CourseController.create);
 
 route.get("/course/:id", CourseController.findById);
 route.patch("/course/:id", CourseController.update);
