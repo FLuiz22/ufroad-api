@@ -8,13 +8,13 @@ const CourseSchema = new Schema ({
     curriculum: [{
         type: Schema.Types.ObjectId,
         ref: "Curriculum",
-        required: true,
+        required: false,
         default: [],
     }],
     sclass: [{
         type: Schema.Types.ObjectId,
         ref: "SClass",
-        required: true,
+        required: false,
         default: [],
     }],
     minimumPeriods: {
