@@ -6,7 +6,9 @@
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "cross-env NODE_ENV=dev nodemon --loader esm-module-alias/loader --no-warnings src/server.js"
+    "dev": "cross-env NODE_ENV=dev nodemon --loader esm-module-alias/loader --no-warnings src/server.js",
+    "lint": "eslint .",
+    "format": "prettier --write ."
   },
   "repository": {
     "type": "git",
