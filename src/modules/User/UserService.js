@@ -1,6 +1,6 @@
-import User from './User.js';
-import { ErrorNotFound, ErrorAlreadyExists } from '@util/errors.js';
-import { hashPassword } from '@util/password.js';
+import User from "./User.js";
+import { ErrorNotFound, ErrorAlreadyExists } from "@util/errors.js";
+import { hashPassword } from "@util/password.js";
 
 export default {
     async create(data) {
@@ -8,7 +8,7 @@ export default {
 
         const user = await User.findOne({ email });
         if (user) {
-            throw new ErrorAlreadyExists('Usuário com email já existente');
+            throw new ErrorAlreadyExists("Usuário com email já existente");
         }
 
         const newUser = await User.create({
@@ -16,7 +16,7 @@ export default {
             email: email,
             password: await hashPassword(password),
         });
-        
+
         return newUser;
     },
 
@@ -24,7 +24,7 @@ export default {
         const user = await User.findById(userId);
 
         if (!user) {
-            throw new ErrorNotFound('Usuário não encontrado');
+            throw new ErrorNotFound("Usuário não encontrado");
         }
 
         return user;
@@ -34,10 +34,12 @@ export default {
         const user = await User.findById(userId);
 
         if (!user) {
-            throw new ErrorNotFound('Usuário não encontrado');
+            throw new ErrorNotFound("Usuário não encontrado");
         }
 
-        const newUser = await User.findByIdAndUpdate(userId, data, { new: true });
+        const newUser = await User.findByIdAndUpdate(userId, data, {
+            new: true,
+        });
 
         return newUser;
     },
@@ -46,9 +48,9 @@ export default {
         const user = await User.findById(userId);
 
         if (!user) {
-            throw new ErrorNotFound('Usuário não encontrado');
+            throw new ErrorNotFound("Usuário não encontrado");
         }
-        
+
         await User.findByIdAndDelete(userId);
     },
 };

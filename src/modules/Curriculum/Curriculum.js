@@ -5,7 +5,7 @@ const CurriculumSchema = new Schema({
         type: Number,
         required: true,
     },
-    
+
     // classes: {
     //     // lista de disciplinas
     // },

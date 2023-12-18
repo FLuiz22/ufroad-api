@@ -1,4 +1,4 @@
-import CurriculumService from './CurriculumService.js';
+import CurriculumService from "./CurriculumService.js";
 
 export default {
     async create(req, res) {
@@ -17,12 +17,15 @@ export default {
     },
 
     async update(req, res) {
-        const curriculum = await CurriculumService.update(req.params.id, req.body);
+        const curriculum = await CurriculumService.update(
+            req.params.id,
+            req.body,
+        );
         return res.status(200).send({ curriculum });
     },
 
     async delete(req, res) {
         await CurriculumService.delete(req.params.id);
         return res.status(200).send({ message: "Grade removida com sucesso" });
-    }
+    },
 };
