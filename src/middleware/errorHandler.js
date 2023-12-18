@@ -10,7 +10,10 @@ export default function errorHandler(err, req, res, next) {
     let message = err.message;
     if (err instanceof ServerError) {
         statusCode = err.statusCode;
-    } else if (err instanceof mongoose.Error.CastError && err.kind === "ObjectId") {
+    } else if (
+        err instanceof mongoose.Error.CastError &&
+        err.kind === "ObjectId"
+    ) {
         // Um erro comum quando usamos o MongoDB é o usuário passar um ID invalido,
         // por conta disso, criamos um caso especifico para isso.
         message = "ObjectID ínvalido";
