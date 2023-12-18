@@ -30,3 +30,12 @@ export class ErrorAlreadyExists extends ServerError {
         super(message, 400);
     }
 }
+
+/**
+ * Error used for when tries to access the system and haven't authorization.
+ */
+export class ErrorUnauthorized extends ServerError {
+    constructor(message) {
+        super(message, 401);
+    }
+}
