@@ -29,10 +29,8 @@ export default {
 
         delete user._doc.password;
 
-        signToken(user);
+        const token = signToken(user);
 
-        return {
-            user
-        };
+        return { user, token };
     }
 };
