@@ -1,8 +1,11 @@
 import "dotenv/config";
+import 'express-async-errors';
 import cors from "cors";
 import { setupDatabase } from "./config/database.js";
 import bodyParser from "body-parser";
 import express from "express";
+import errorHandler from './middleware/errorHandler.js';
+
 import UserRoutes from "./modules/User/UserRoutes.js";
 import CurriculumRoutes from "./modules/Curriculum/CurriculumRoutes.js";
 import ClassRoutes from "./modules/Class/ClassRoutes.js";
@@ -19,9 +22,10 @@ server.get("/", function (req, res) {
 setupDatabase();
 
 server.use(express.json());
-server.use(UserRoutes, CurriculumRoutes, ClassRoutes, CourseRoutes);
+server.use(UserRoutes, CurriculumRoutes, ClassRoutes, CourseRoutes, AuthRoutes);
 server.use(bodyParser.urlencoded({ extended: false }));
 server.use(bodyParser.json());
+server.use(errorHandler);
 
 const port = process.env.PORT;
 
