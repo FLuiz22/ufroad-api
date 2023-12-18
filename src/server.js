@@ -1,15 +1,16 @@
 import "dotenv/config";
-import 'express-async-errors';
+import "express-async-errors";
 import cors from "cors";
 import { setupDatabase } from "./config/database.js";
 import bodyParser from "body-parser";
 import express from "express";
-import errorHandler from './middleware/errorHandler.js';
+import errorHandler from "./middleware/errorHandler.js";
 
 import UserRoutes from "./modules/User/UserRoutes.js";
 import CurriculumRoutes from "./modules/Curriculum/CurriculumRoutes.js";
 import ClassRoutes from "./modules/Class/ClassRoutes.js";
 import CourseRoutes from "./modules/Course/CourseRoutes.js";
+import AuthRoutes from "./modules/User/Auth/AuthRoutes.js";
 
 const server = express();
 
