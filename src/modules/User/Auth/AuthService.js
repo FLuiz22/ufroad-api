@@ -1,7 +1,7 @@
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
-import User from "../User.js";
-import { ErrorUnauthorized } from "@/util/errors.js";
+import User from "@User/User.js";
+import { ErrorUnauthorized } from "@util/errors.js";
 
 const signToken = (user) => {
     return jwt.sign(

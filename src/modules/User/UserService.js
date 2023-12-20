@@ -1,4 +1,4 @@
-import User from "./User.js";
+import User from "@User/User.js";
 import { ErrorNotFound, ErrorAlreadyExists } from "@util/errors.js";
 import { hashPassword } from "@util/password.js";
 

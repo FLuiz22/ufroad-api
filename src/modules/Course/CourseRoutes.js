@@ -1,7 +1,7 @@
+import CourseController from "@Course/CourseController.js";
 import { Router } from "express";
-const route = new Router();
 
-import CourseController from "./CourseController.js";
+const route = new Router();
 
 route.post("/course", CourseController.create);
 

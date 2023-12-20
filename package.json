@@ -22,7 +22,14 @@
     "homepage": "https://github.com/FLuiz22/ufroad-api#readme",
     "aliases": {
         "@": "src",
-        "@util": "src/util"
+        "@util": "src/util",
+        "@middleware": "src/middleware",
+        "@config": "src/config",
+        "@User": "src/modules/User",
+        "@Curriculum": "src/modules/Curriculum",
+        "@Course": "src/modules/Course",
+        "@Class": "src/modules/Class",
+        "@Auth": "src/modules/User/Auth"
     },
     "dependencies": {
         "bcrypt": "^5.1.1",

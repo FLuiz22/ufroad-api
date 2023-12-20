@@ -1,4 +1,4 @@
-import UserService from "./UserService.js";
+import UserService from "@User/UserService.js";
 
 export default {
     async create(req, res) {

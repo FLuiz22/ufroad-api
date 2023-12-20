@@ -1,4 +1,4 @@
-import CurriculumService from "./CurriculumService.js";
+import CurriculumService from "@Curriculum/CurriculumService.js";
 
 export default {
     async create(req, res) {

@@ -1,4 +1,4 @@
-import Curriculum from "./Curriculum.js";
+import Curriculum from "@Curriculum/Curriculum.js";
 import { ErrorNotFound } from "@util/errors.js";
 
 export default {

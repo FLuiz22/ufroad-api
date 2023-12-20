@@ -1,4 +1,4 @@
-import Course from "./Course.js";
+import Course from "@Course/Course.js";
 import { ErrorNotFound } from "@util/errors.js";
 
 export default {

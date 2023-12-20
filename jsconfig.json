@@ -5,7 +5,14 @@
         "baseUrl": "./src",
         "paths": {
             "@/*": ["./*"],
-            "@util/*": ["./util/*"]
+            "@util/*": ["./util/*"],
+            "@config/*": ["./config/*"],
+            "@middleware/*": ["./middleware/*"],
+            "@User/*": ["./modules/User/*"],
+            "@Curriculum/*": ["./modules/Curriculum/*"],
+            "@Course/*": ["./modules/Course/*"],
+            "@Class/*": ["./modules/Class/*"],
+            "@Auth/*": ["./modules/User/Auth/*"]
         }
     },
     "exclude": ["node_modules", "**/node_modules/*"]

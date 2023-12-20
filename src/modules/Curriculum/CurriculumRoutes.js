@@ -1,5 +1,6 @@
-import CurriculumController from "./CurriculumController.js";
+import CurriculumController from "@Curriculum/CurriculumController.js";
 import { Router } from "express";
+
 const router = new Router();
 
 router.post("/curriculum", CurriculumController.create);

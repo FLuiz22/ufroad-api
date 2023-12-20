@@ -1,6 +1,7 @@
+import UserController from "@User/UserController.js";
 import { Router } from "express";
+
 const router = new Router();
-import UserController from "./UserController.js";
 
 router.post("/signUp", UserController.create);
 
