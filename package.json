@@ -1,40 +1,44 @@
 {
-  "name": "ufroad-api",
-  "version": "0.0.1",
-  "description": "",
-  "main": "index.js",
-  "type": "module",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "cross-env NODE_ENV=dev nodemon --loader esm-module-alias/loader --no-warnings src/server.js"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/FLuiz22/ufroad-api.git"
-  },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/FLuiz22/ufroad-api/issues"
-  },
-  "homepage": "https://github.com/FLuiz22/ufroad-api#readme",
-  "aliases": {
-    "@": "src",
-    "@util": "src/util"
-  },
-  "dependencies": {
-    "bcrypt": "^5.1.1",
-    "body-parser": "^1.20.2",
-    "cors": "^2.8.5",
-    "cross-env": "^7.0.3",
-    "dotenv": "^16.3.1",
-    "esm-module-alias": "^2.1.0",
-    "express": "^4.18.2",
-    "express-async-errors": "^3.1.1",
-    "jsonwebtoken": "^9.0.2",
-    "mongoose": "^8.0.1"
-  },
-  "devDependencies": {
-    "nodemon": "^3.0.1"
-  }
+    "name": "ufroad-api",
+    "version": "0.0.1",
+    "description": "",
+    "main": "index.js",
+    "type": "module",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "dev": "cross-env NODE_ENV=dev nodemon --loader esm-module-alias/loader --no-warnings src/server.js",
+        "lint": "eslint .",
+        "format": "prettier --write ."
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/FLuiz22/ufroad-api.git"
+    },
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/FLuiz22/ufroad-api/issues"
+    },
+    "homepage": "https://github.com/FLuiz22/ufroad-api#readme",
+    "aliases": {
+        "@": "src",
+        "@util": "src/util"
+    },
+    "dependencies": {
+        "bcrypt": "^5.1.1",
+        "body-parser": "^1.20.2",
+        "cors": "^2.8.5",
+        "cross-env": "^7.0.3",
+        "dotenv": "^16.3.1",
+        "esm-module-alias": "^2.1.0",
+        "express": "^4.18.2",
+        "express-async-errors": "^3.1.1",
+        "jsonwebtoken": "^9.0.2",
+        "mongoose": "^8.0.1"
+    },
+    "devDependencies": {
+        "eslint": "^8.56.0",
+        "nodemon": "^3.0.1",
+        "prettier": "^3.1.1"
+    }
 }
