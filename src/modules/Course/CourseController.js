@@ -1,4 +1,4 @@
-import CourseService from "./CourseService.js";
+import CourseService from "@Course/CourseService.js";
 
 export default {
     async create(req, res) {

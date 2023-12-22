@@ -1,5 +1,5 @@
-import Class from "./Class.js";
-import { ErrorNotFound, ErrorAlreadyExists } from "@/util/errors.js";
+import Class from "@Class/Class.js";
+import { ErrorNotFound, ErrorAlreadyExists } from "@util/errors.js";
 
 export default {
     async create(data) {

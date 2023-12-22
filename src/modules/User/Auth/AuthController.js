@@ -1,4 +1,4 @@
-import AuthService from "./AuthService.js";
+import AuthService from "@Auth/AuthService.js";
 
 export default {
     async signIn(req, res) {

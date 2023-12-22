@@ -1,4 +1,4 @@
-import ClassService from "./ClassService.js";
+import ClassService from "@Class/ClassService.js";
 
 export default {
     async create(req, res) {
