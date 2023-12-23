@@ -6,11 +6,20 @@ const CurriculumSchema = new Schema({
         required: true,
     },
 
-    // classes: {
-    //     // lista de disciplinas
-    // },
+    classes: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: "Class",
+            required: false,
+            default: [],
+        },
+    ],
 
-    // course: { ... },
+    course: {
+        type: Schema.Types.ObjectId,
+        ref: "Course",
+        required: true,
+    },
 });
 
 const Curriculum = model("Curriculum", CurriculumSchema);

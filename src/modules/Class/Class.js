@@ -6,8 +6,6 @@ const ClassSchema = new Schema({
         required: true,
     },
 
-    // cursos
-
     credits: {
         type: Number,
         required: true,

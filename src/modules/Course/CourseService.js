@@ -23,14 +23,14 @@ export default {
         return course;
     },
 
-    async update(couseId, data) {
+    async update(courseId, data) {
         const course = await Course.findById(courseId);
 
         if (!course) {
             throw new ErrorNotFound("Curso não encontrado");
         }
 
-        const newCourse = await Course.findByIdAndUpdate(couseId, data, {
+        const newCourse = await Course.findByIdAndUpdate(courseId, data, {
             new: true,
         });
 
@@ -47,7 +47,7 @@ export default {
         if (
             course.name !== data.name ||
             course.minimumPeriods !== data.minimumPeriods ||
-            course.curriculum !== data.curriculum
+            course.curriculums !== data.curriculums
         ) {
             throw new ErrorNotFound("Curso não encontrado");
         }
@@ -69,7 +69,7 @@ export default {
         if (
             course.name !== data.name ||
             course.minimumPeriods !== data.minimumPeriods ||
-            course.sclass !== data.sclass
+            course.classes !== data.classes
         ) {
             throw new ErrorNotFound("Curso não encontrado");
         }
