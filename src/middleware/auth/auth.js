@@ -1,6 +1,7 @@
 import errorHandler from "../errorHandler";
 const jwt = require("jsonwebtoken");
 const User = require("@User/User");
+const Course = require("@Course/Course");
 
 module.exports = {
     userExist(err, req, res, next){
@@ -9,6 +10,10 @@ module.exports = {
 
     administratorExist(err, req, res, next){
         authorize(err, req, res, next, "adminExist");
+    },
+
+    userAuthorized(err, req, res, next){
+        authorize(err, req, res, next, "authorized");
     },
 
     isAdmin(err, req, res, next){
@@ -34,6 +39,7 @@ const authorize = async (req, res, next, type) => {
         if (err) return res.status(401).send({ error: "Token inválido." });
     
         const user = await User.findOne({ _id: decoded.sub });
+        const course = await Course.findOne({ _id: decoded.sub });
 
         switch(type) {
             case "userExist":
@@ -41,17 +47,17 @@ const authorize = async (req, res, next, type) => {
                     return errorHandler(err, req, res, next); // "usuario nao existe"
                 }; break
 
-            case "adminExist":
-                if (!isAdmin(user)){ // se o adm nao existe (ex: o user tenta logar como adm, mas esse adm obviamente nao existe)
-                    return errorHandler(err, req, res, next); // "administrador nao existe"
-                }; break
+            case "authorized":
+                if(res.user.course !== course){ // se o curso do usuario é diferente do curso em questao
+                    return errorHandler(err, req, res, next); // "usuario nao autorizado" (ele nao é do curso em questao e nao pode fazer determinadas coisas)
+                }; break;
 
             case "administrator":
-                if(!isAdmin(user)){ // se o usuario nao eh adm e tenta acessar algo de adm (sem ser login)
+                if(!isAdmin(user)){ // se o usuario nao eh adm e tenta acessar algo de adm
                     return errorHandler(err, req, res, next); // "usuario sem permissao"
                 }; break
         }
     });
 };
 
-const isAdmin = (user) => user && ["Estudante", "Administrador"].includes(`${user.role}`);
+const isAdmin = (user) => user && user.isAdmin;
