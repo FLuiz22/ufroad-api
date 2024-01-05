@@ -1,4 +1,3 @@
-require('dotenv').config()
 import { Schema, model } from "mongoose";
 
 const ClassSchema = new Schema({
