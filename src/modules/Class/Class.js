@@ -14,7 +14,7 @@ const ClassSchema = new Schema({
     requirements: [
         {
             type: Schema.Types.ObjectId,
-            required: true,
+            required: false,
         },
     ],
 
