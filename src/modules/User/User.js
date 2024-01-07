@@ -5,21 +5,27 @@ const UserSchema = new Schema({
         type: String,
         required: true,
     },
+
     email: {
         type: String,
         required: true,
     },
+
     password: {
         type: String,
         required: true,
     },
-    // course: { ... }
-    role: {
-        type: String,
-        // Talvez administrador deveria ser um boolean?
-        enum: ["Estudante", "Administrador"],
+
+    course: {
+        type: Schema.Types.ObjectId,
+        ref: "Course",
         required: true,
-        default: "Estudante",
+    },
+    
+    isAdmin: {
+        type: Boolean,
+        required: true,
+        default: false,
     },
 });
 
