@@ -39,6 +39,10 @@ export default {
             throw new ErrorNotFound("Usuário não encontrado");
         }
 
+        if (data.hasOwnProperty("password")){
+            data.password = await hashPassword(data.password);
+        }
+
         delete data.isAdmin;
 
         const newUser = await User.findByIdAndUpdate(userId, data, {
