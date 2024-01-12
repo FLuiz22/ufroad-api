@@ -3,16 +3,16 @@ import { ErrorNotFound } from "@util/errors.js";
 
 export default {
     async create(data) {
-        const { year /* classes, courseId */ } = data;
+        const { yearImplemented, classes, course } = data;
 
-        if (!year) {
+        if (!yearImplemented) {
             throw new Error("Ano inválido");
         }
 
         const cur = await Curriculum.create({
-            yearImplemented: parseInt(year),
-            // classes: ...,
-            // course: ...,
+            yearImplemented: parseInt(yearImplemented),
+            classes,
+            course,
         });
 
         return cur;

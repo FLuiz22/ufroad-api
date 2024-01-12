@@ -6,8 +6,6 @@ const ClassSchema = new Schema({
         required: true,
     },
 
-    // cursos
-
     credits: {
         type: Number,
         required: true,
@@ -16,7 +14,7 @@ const ClassSchema = new Schema({
     requirements: [
         {
             type: Schema.Types.ObjectId,
-            required: true,
+            required: false,
         },
     ],
 

@@ -4,7 +4,7 @@ import { hashPassword } from "@util/password.js";
 
 export default {
     async create(data) {
-        const { name, email, password } = data;
+        const { name, email, password, course, isAdmin } = data;
 
         const user = await User.findOne({ email });
         if (user) {
@@ -15,6 +15,8 @@ export default {
             name: name,
             email: email,
             password: await hashPassword(password),
+            course: course,
+            isAdmin: isAdmin,
         });
 
         return newUser;
@@ -36,6 +38,12 @@ export default {
         if (!user) {
             throw new ErrorNotFound("Usuário não encontrado");
         }
+
+        if (data.hasOwnProperty("password")){
+            data.password = await hashPassword(data.password);
+        }
+
+        delete data.isAdmin;
 
         const newUser = await User.findByIdAndUpdate(userId, data, {
             new: true,
