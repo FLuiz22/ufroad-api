@@ -1,31 +1,12 @@
-import errorHandler from "../errorHandler";
-const jwt = require("jsonwebtoken");
-const User = require("@User/User");
-const Course = require("@Course/Course");
-
-module.exports = {
-    userExist(err, req, res, next){
-        authorize(err, req, res, next, "userExist");
-    },
-
-    administratorExist(err, req, res, next){
-        authorize(err, req, res, next, "adminExist");
-    },
-
-    userAuthorized(err, req, res, next){
-        authorize(err, req, res, next, "authorized");
-    },
-
-    isAdmin(err, req, res, next){
-        authorize(err, req, res, next, "administrator");
-    },
-};
+import { ErrorNotFound, ErrorUnauthorized } from "@util/errors.js";
+import jwt from "jsonwebtoken";
+import User from "@User/User.js";
 
 const authorize = async (req, res, next, type) => {
     const authHeader = req.headers.authorization;
 
     if (!authHeader) {
-        return res.status(401).send({ error: "Requisição sem token." });
+        throw new ErrorUnauthorized("Requisição sem token.");
     }
 
     const parts = authHeader.split(" ");
@@ -33,31 +14,60 @@ const authorize = async (req, res, next, type) => {
     const [scheme, token] = parts.length === 2 ? parts : [null, null];
 
     if (scheme === null || !/^Bearer$/i.test(scheme))
-        return res.status(401).send({ error: "Token mal formatado." });
+        throw new ErrorUnauthorized("Token mal formatado.");
 
     jwt.verify(token, process.env.JWT_SECRET, async (err, decoded) => {
-        if (err) return res.status(401).send({ error: "Token inválido." });
+        if (err) throw new ErrorUnauthorized("Token inválido.");
     
         const user = await User.findOne({ _id: decoded.sub });
-        const course = await Course.findOne({ _id: decoded.sub });
+        //const course = await Course.findOne({ _id: decoded.sub }); [feat futura..]
 
         switch(type) {
+
             case "userExist":
-                if(!user){ // se o usuario nao existe
-                    return errorHandler(err, req, res, next); // "usuario nao existe"
+                if(!user){
+                    throw new ErrorNotFound("Usuário não existe");
                 }; break
 
-            case "authorized":
-                if(res.user.course !== course){ // se o curso do usuario é diferente do curso em questao
-                    return errorHandler(err, req, res, next); // "usuario nao autorizado" (ele nao é do curso em questao e nao pode fazer determinadas coisas)
-                }; break;
-
+            case "itself":
+                if(!isAdmin(user) && (user._id.toString() !== req.params.id)){
+                    throw new ErrorUnauthorized("Usuário não autorizado");
+                }; break
+                
             case "administrator":
                 if(!isAdmin(user)){ // se o usuario nao eh adm e tenta acessar algo de adm
-                    return errorHandler(err, req, res, next); // "usuario sem permissao"
+                    throw new ErrorUnauthorized("Usuário não autorizado"); 
                 }; break
+
+        /* feat futura...
+            case "authorized":
+                if(res.user.course !== course){ // se o curso do usuario é diferente do curso em questao
+                    throw new ErrorUnauthorized("Usuário não autorizado"); //  nao é do curso em questao e nao pode fazer determinadas coisas
+                }; break
+        */ 
         }
+        next();
     });
 };
 
 const isAdmin = (user) => user && user.isAdmin;
+
+export default {
+    userExist(req, res, next){
+        authorize(req, res, next, "userExist");
+    },
+    
+    isAdmin(req, res, next){
+        authorize(req, res, next, "administrator");
+    },
+
+    isItself(req, res, next){
+        authorize(req, res, next, "itself");
+    }
+
+/* feat futura...
+    userAuthorized(req, res, next){
+        authorize(req, res, next, "authorized");
+    },
+*/
+};
