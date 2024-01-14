@@ -1,13 +1,13 @@
-import Class from './Class.js';
-import { ErrorNotFound, ErrorAlreadyExists } from '@/util/errors.js';
+import Class from "@Class/Class.js";
+import { ErrorNotFound, ErrorAlreadyExists } from "@util/errors.js";
 
 export default {
     async create(data) {
-        const {name, credits, requirements, category, content} = data;
-        
+        const { name, credits, requirements, category, content } = data;
+
         const sclass = await Class.findOne({ name });
-        
-        if(sclass){
+
+        if (sclass) {
             throw new ErrorAlreadyExists("Disciplina já existe!");
         }
 
@@ -16,41 +16,43 @@ export default {
             credits: credits,
             requirements: requirements,
             category: category,
-            content: content
+            content: content,
         });
 
         return newClass;
     },
 
-    async findById(classId){
+    async findById(classId) {
         const sclass = await Class.findById(classId);
 
-        if(!sclass){
+        if (!sclass) {
             throw new ErrorNotFound("Disciplina não encontrada!");
         }
 
         return sclass;
     },
 
-    async update(classId, data){
+    async update(classId, data) {
         const sclass = await Class.findById(classId);
 
-        if(!sclass){
+        if (!sclass) {
             throw new ErrorNotFound("Disciplina não encontrada");
         }
 
-        const updateClass = await Class.findByIdAndUpdate(classId, data, {new: true});
+        const updateClass = await Class.findByIdAndUpdate(classId, data, {
+            new: true,
+        });
 
         return updateClass;
     },
 
-    async delete(ClassId){
+    async delete(ClassId) {
         const sclass = await Class.findById(ClassId);
 
-        if(!sclass){
+        if (!sclass) {
             throw new ErrorNotFound("Disciplina não encontrada!");
         }
 
         await Class.findByIdAndDelete(ClassId);
-    }
+    },
 };

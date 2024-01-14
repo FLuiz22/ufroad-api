@@ -1,4 +1,4 @@
-import CourseService from './CourseService.js';
+import CourseService from "@Course/CourseService.js";
 
 export default {
     async create(req, res) {
@@ -10,19 +10,25 @@ export default {
         const course = await CourseService.findById(req.params.id);
         return res.status(200).send({ course });
     },
-    
+
     async update(req, res) {
         const course = await CourseService.update(req.params.id, req.body);
         return res.status(200).send({ course });
     },
 
     async updateSClass(req, res) {
-        const course = await CourseService.updateSClass(req.params.id, req.body);
+        const course = await CourseService.updateSClass(
+            req.params.id,
+            req.body,
+        );
         return res.status(200).send({ course });
     },
 
     async updateCurriculum(req, res) {
-        const course = await CourseService.updateCurriculum(req.params.id, req.body);
+        const course = await CourseService.updateCurriculum(
+            req.params.id,
+            req.body,
+        );
         return res.status(200).send({ course });
     },
 

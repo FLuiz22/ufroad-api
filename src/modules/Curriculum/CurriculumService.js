@@ -1,21 +1,20 @@
-import Curriculum from './Curriculum.js';
-import { ErrorNotFound } from '@util/errors.js';
+import Curriculum from "@Curriculum/Curriculum.js";
+import { ErrorNotFound } from "@util/errors.js";
 
 export default {
     async create(data) {
-        const { year, /* classes, courseId */ } = data;
+        const { yearImplemented, classes, course } = data;
 
-        if (!year) {
+        if (!yearImplemented) {
             throw new Error("Ano inválido");
         }
 
-
         const cur = await Curriculum.create({
-            yearImplemented: parseInt(year),
-            // classes: ...,
-            // course: ...,
+            yearImplemented: parseInt(yearImplemented),
+            classes,
+            course,
         });
-        
+
         return cur;
     },
 
@@ -35,17 +34,19 @@ export default {
     },
 
     async update(curId, data) {
-        if (!await Curriculum.findById(curId)) {
+        if (!(await Curriculum.findById(curId))) {
             throw new ErrorNotFound("Grade não encontrada");
         }
 
-        const newCur = await Curriculum.findByIdAndUpdate(curId, data, { new: true });
+        const newCur = await Curriculum.findByIdAndUpdate(curId, data, {
+            new: true,
+        });
 
         return newCur;
     },
 
     async delete(curId) {
-        if (!await Curriculum.findById(curId)) {
+        if (!(await Curriculum.findById(curId))) {
             throw new ErrorNotFound("Grade não encontrada");
         }
 

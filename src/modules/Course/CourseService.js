@@ -1,5 +1,5 @@
-import Course from './Course.js';
-import { ErrorNotFound } from '@util/errors.js';
+import Course from "@Course/Course.js";
+import { ErrorNotFound } from "@util/errors.js";
 
 export default {
     async create(data) {
@@ -9,7 +9,7 @@ export default {
             name,
             minimumPeriods,
         });
-        
+
         return newCourse;
     },
 
@@ -17,20 +17,22 @@ export default {
         const course = await Course.findById(courseId);
 
         if (!course) {
-            throw new ErrorNotFound('Curso não encontrado');
+            throw new ErrorNotFound("Curso não encontrado");
         }
 
         return course;
     },
 
-    async update(couseId, data) {
+    async update(courseId, data) {
         const course = await Course.findById(courseId);
 
         if (!course) {
-            throw new ErrorNotFound('Curso não encontrado');
+            throw new ErrorNotFound("Curso não encontrado");
         }
 
-        const newCourse = await Course.findByIdAndUpdate(couseId, data, { new: true });
+        const newCourse = await Course.findByIdAndUpdate(courseId, data, {
+            new: true,
+        });
 
         return newCourse;
     },
@@ -39,14 +41,20 @@ export default {
         const course = await Course.findById(courseId);
 
         if (!course) {
-            throw new ErrorNotFound('Curso não encontrado');
+            throw new ErrorNotFound("Curso não encontrado");
         }
 
-        if (course.name !== data.name || course.minimumPeriods !== data.minimumPeriods || course.curriculum !== data.curriculum){
-            throw new ErrorNotFound('Curso não encontrado');
+        if (
+            course.name !== data.name ||
+            course.minimumPeriods !== data.minimumPeriods ||
+            course.curriculums !== data.curriculums
+        ) {
+            throw new ErrorNotFound("Curso não encontrado");
         }
 
-        const newCourse = await Course.findByIdAndUpdate(courseId, data, {new: true});
+        const newCourse = await Course.findByIdAndUpdate(courseId, data, {
+            new: true,
+        });
 
         return newCourse;
     },
@@ -55,14 +63,20 @@ export default {
         const course = await Course.findById(courseId);
 
         if (!course) {
-            throw new ErrorNotFound('Curso não encontrado');
+            throw new ErrorNotFound("Curso não encontrado");
         }
 
-        if (course.name !== data.name || course.minimumPeriods !== data.minimumPeriods || course.sclass !== data.sclass){
-            throw new ErrorNotFound('Curso não encontrado');
+        if (
+            course.name !== data.name ||
+            course.minimumPeriods !== data.minimumPeriods ||
+            course.classes !== data.classes
+        ) {
+            throw new ErrorNotFound("Curso não encontrado");
         }
 
-        const newCourse = await Course.findByIdAndUpdate(courseId, data, {new: true});
+        const newCourse = await Course.findByIdAndUpdate(courseId, data, {
+            new: true,
+        });
 
         return newCourse;
     },
@@ -71,9 +85,9 @@ export default {
         const course = await Course.findById(courseId);
 
         if (!course) {
-            throw new ErrorNotFound('Curso não encontrado');
+            throw new ErrorNotFound("Curso não encontrado");
         }
-        
+
         await Course.findByIdAndDelete(courseId);
     },
 };
