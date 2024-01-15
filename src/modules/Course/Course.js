@@ -18,6 +18,13 @@ const CourseSchema = new Schema({
         required: true,
         default: 9,
     },
+
+    curriculums: [{
+        type: Schema.Types.ObjectId,
+        ref: "Curriculum",
+        required: false,
+        default: []
+    }]
 });
 
 const Course = model("Course", CourseSchema);
