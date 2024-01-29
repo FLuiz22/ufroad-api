@@ -23,7 +23,7 @@ export default {
     },
 
     async findById(userId) {
-        const user = await User.findById(userId).populate('course');
+        const user = await User.findById(userId).populate('Course');
 
         if (!user) {
             throw new ErrorNotFound("Usuário não encontrado");

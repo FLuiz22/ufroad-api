@@ -14,7 +14,7 @@ export default {
     },
 
     async findById(courseId) {
-        const course = await Course.findById(courseId).populate('class curriculum');
+        const course = await Course.findById(courseId).populate('Class Curriculum');
 
         if (!course) {
             throw new ErrorNotFound("Curso não encontrado");
