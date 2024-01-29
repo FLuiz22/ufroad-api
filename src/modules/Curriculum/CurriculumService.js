@@ -23,7 +23,7 @@ export default {
     },
 
     async findById(curId) {
-        let cur = await Curriculum.findById(curId);
+        let cur = await Curriculum.findById(curId).populate('Class');
 
         if (!cur) {
             throw new ErrorNotFound("Grade não encontrada");
